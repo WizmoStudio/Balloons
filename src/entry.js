@@ -11,10 +11,17 @@ import { WebGLRenderer, PerspectiveCamera, Scene, Vector3 } from 'three';
 import SeedScene from './objects/Scene.js';
 import Stats from 'stats.js';
 
+// stats
 var stats = new Stats();
 stats.showPanel(0);
 document.body.appendChild(stats.dom);
 
+// ui
+var canv = document.createElement('canvas');
+canv.id = 'ui';
+document.body.appendChild(canv);
+
+// init
 const scene = new Scene();
 const camera = new PerspectiveCamera();
 const renderer = new WebGLRenderer({antialias: true});
@@ -46,15 +53,30 @@ window.requestAnimationFrame(onAnimationFrameHandler);
 
 // resize
 const windowResizeHanlder = () => { 
+
+  // threejs
   const { innerHeight, innerWidth } = window;
   renderer.setSize(innerWidth, innerHeight);
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
+
+  // ui
+  var ui = document.getElementById("ui");
+  ui.width = innerWidth;
+  ui.height = innerHeight;
+  ui.style.position = "absolute";
+  ui.style.zIndex = 100;
+  ui.style.width = innerWidth+'px';
+  ui.style.height = innerHeight+'px';
+  ui.style.top = 0;
+  ui.style.left = 0;
+
 };
+
 windowResizeHanlder();
 window.addEventListener('resize', windowResizeHanlder);
 
 // dom
 document.body.style.margin = 0;
-document.body.appendChild( renderer.domElement );
-
+document.body.style.overflow = 'hidden';
+document.body.appendChild(renderer.domElement);

@@ -31,16 +31,8 @@ export default class TowerObstacle extends Group {
             size_dw = [2, 0.8]
         }
 
-        var colors = [
-            0x29DDB0,
-            0xFE5A60,
-            0xC284FC,
-            0xFFC112
-        ]
-
         var geometry = new BoxGeometry(size_dw[0], 0.1, size_dw[1]);
-        var material = new MeshPhongMaterial( {color: colors[Math.floor(Math.random() * colors.length)]
-} );
+        var material = new MeshPhongMaterial({color: config.color});
         var cylinder = new Mesh(geometry, material);
 
         this.add(cylinder);
@@ -49,9 +41,10 @@ export default class TowerObstacle extends Group {
         this.position.x = position_xz[0]
         this.position.z = position_xz[1]
 
-    }
+        this.userData = {
+            position: config.position
+        };
 
-    update(timeStamp) {
-        // this.rotation.x = timeStamp / 10000;
+
     }
 }

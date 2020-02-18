@@ -13,11 +13,6 @@ export default class State {
           turbo: false,
           sequence: 0
       }
-
-      setInterval(() => {
-        this.current.speed += 0.2
-        this.sequence += 1
-      }, 10000)
       
     }
   }
