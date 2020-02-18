@@ -7,6 +7,7 @@ import State from '../engine/State.js';
 import Controls from '../engine/Controls.js';
 
 import UI from '../ui/UI.js';
+import Background from '../background/Background.js';
 
 export default class SeedScene extends Group {
   constructor() {
@@ -25,6 +26,7 @@ export default class SeedScene extends Group {
     this.balloon = new Balloon(this.state);
 
     this.ui = new UI(this.state);
+    this.background = new Background(this.state);
 
     this.add(this.lights);
     this.add(this.tower);
@@ -36,7 +38,9 @@ export default class SeedScene extends Group {
     this.tower.update(timeStamp)
     this.balloon.update(timeStamp)
     this.lights.update(timeStamp)
+    
     this.ui.update(timeStamp)
+    this.background.update(timeStamp)
 
     // Rotate part
     
@@ -60,7 +64,7 @@ export default class SeedScene extends Group {
 
     // Speed & up part
     var max_step_speed = 250
-    var max_speed = 4
+    var max_speed = 3
     var turbo_speed = 2
 
     var speed_diff = 1-((max_step_speed+this.position.y)/max_step_speed)

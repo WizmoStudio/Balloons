@@ -54,7 +54,7 @@ export default class Tower extends Group {
 
             // Medium
             if(step > 30 && step < 60){
-                if(Math.random() > 0.2){
+                if(Math.random() > 0.4){
                     this.obstacles.push({
                         y: step,
                         obj: new TowerObstacle({
@@ -88,7 +88,7 @@ export default class Tower extends Group {
                         })
                     })
                 }
-                if(Math.random() > 0.6){
+                if(Math.random() > 0.8){
                     this.obstacles.push({
                         y: step,
                         obj: new TowerObstacle({

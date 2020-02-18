@@ -17,14 +17,22 @@ stats.showPanel(0);
 document.body.appendChild(stats.dom);
 
 // ui
-var canv = document.createElement('canvas');
-canv.id = 'ui';
-document.body.appendChild(canv);
+var canvas_ui = document.createElement('canvas');
+canvas_ui.id = 'ui';
+document.body.appendChild(canvas_ui);
+
+// ui
+var canvas_bg = document.createElement('canvas');
+canvas_bg.id = 'background';
+document.body.appendChild(canvas_bg);
 
 // init
 const scene = new Scene();
 const camera = new PerspectiveCamera();
-const renderer = new WebGLRenderer({antialias: true});
+const renderer = new WebGLRenderer({
+  antialias: true,
+  alpha: true
+});
 const seedScene = new SeedScene();
 
 // scene
@@ -36,7 +44,7 @@ camera.lookAt(new Vector3(0,0,0));
 
 // renderer
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setClearColor(0x212121, 1);
+renderer.setClearColor(0x212121, 0);
 renderer.shadowMapEnabled = true;
 
 // render loop
@@ -59,6 +67,9 @@ const windowResizeHanlder = () => {
   renderer.setSize(innerWidth, innerHeight);
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
+  var threejs = document.getElementById("threejs");
+  threejs.style.zIndex = 20;
+  threejs.style.position = 'relative';
 
   // ui
   var ui = document.getElementById("ui");
@@ -71,12 +82,24 @@ const windowResizeHanlder = () => {
   ui.style.top = 0;
   ui.style.left = 0;
 
-};
+  // background
+  var ui = document.getElementById("background");
+  ui.width = innerWidth;
+  ui.height = innerHeight;
+  ui.style.position = "absolute";
+  ui.style.zIndex = 10;
+  ui.style.width = innerWidth+'px';
+  ui.style.height = innerHeight+'px';
+  ui.style.top = 0;
+  ui.style.left = 0;
 
-windowResizeHanlder();
-window.addEventListener('resize', windowResizeHanlder);
+};
 
 // dom
 document.body.style.margin = 0;
 document.body.style.overflow = 'hidden';
+renderer.domElement.id = "threejs"
 document.body.appendChild(renderer.domElement);
+
+windowResizeHanlder();
+window.addEventListener('resize', windowResizeHanlder);
