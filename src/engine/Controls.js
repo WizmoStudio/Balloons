@@ -19,28 +19,49 @@ export default class Controls {
 
 
     var faces = [0, 1, 2, 3]
-    var mc = new Hammer(document);
+    // var mc = new Hammer(document);
 
-    mc.on("tap", (ev) => {
-      if(ev.center.x > (viewport.w / 2)){
-        this.doRotate(1)
+    // mc.on("touchstart", (ev) => {
+    //   if(ev.center.x > (viewport.w / 2)){
+    //     this.doRotate(1)
+    //   }else{
+    //     this.doRotate(-1)
+    //   }
+    // })
+
+    document.addEventListener("touchstart", (e) => {
+      if(e.touches[0].clientY > (viewport.h*0.8)){
+        this.enableTurbo()
       }else{
-        this.doRotate(-1)
+        if(e.touches[0].clientX > (viewport.w*0.5)){
+          this.doRotate(1)
+        }else{
+          this.doRotate(-1)
+        }
       }
     })
+
+    document.addEventListener("touchend", (e) => {
+      console.log(e)
+      if(e.changedTouches[0].clientY < (viewport.h*0.8)){
+        this.enableTurbo()
+      }
+    })
+    
+
 
 
     document.onkeyup = (e) => {
       e = e || window.event;
       if(e.keyCode == '38'){
-        this.state.current.turbo = false
+        this.disableTurbo()
       }
     }
 
     document.onkeydown = (e) => {
       e = e || window.event;
       if(e.keyCode == '38'){
-        this.state.current.turbo = true
+        this.enableTurbo()
       }
       if(e.keyCode == '37'){
         this.doRotate(-1)
@@ -50,7 +71,17 @@ export default class Controls {
       }
     }
   }
-
+  
+  enableTurbo(){
+    console.log('turbo on')
+    this.state.current.turbo = true
+  }
+  
+  disableTurbo(){
+    console.log('turbo off')
+    this.state.current.turbo = false
+  }
+  
   doRotate(way){
     if(way == 1){
       var tmpFace = this.state.current.face + 1
