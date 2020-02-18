@@ -1,19 +1,21 @@
-import { Group, BoxGeometry, MeshPhongMaterial, Mesh } from 'three';
+import { Group, BoxGeometry, SphereGeometry, MeshPhongMaterial, Mesh } from 'three';
 
 export default class Balloon extends Group {
     constructor(state) {
 
         super();
 
+
         this.state = state;
 
         this.name = 'balloon';
 
-        var geometry = new BoxGeometry(0.5, 0.5, 0.5);
-        var material = new MeshPhongMaterial( {color: 0xff00ff} );
-        var box = new Mesh(geometry, material);
+        var geometry = new SphereGeometry(0.3, 12, 12);
+        // var geometry = new BoxGeometry(0.5, 0.5, 0.5);
+        var material = new MeshPhongMaterial( {color: 0xFE5A60} );
+        var balloon = new Mesh(geometry, material);
 
-        this.add(box);
+        this.add(balloon);
         this.position.z = -1
 
     }

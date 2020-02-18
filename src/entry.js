@@ -24,12 +24,13 @@ const seedScene = new SeedScene();
 scene.add(seedScene);
 
 // camera
-camera.position.set(0,-2,-10);
+camera.position.set(0,-1,-10);
 camera.lookAt(new Vector3(0,0,0));
 
 // renderer
 renderer.setPixelRatio(window.devicePixelRatio);
-renderer.setClearColor(0x7ec0ee, 1);
+renderer.setClearColor(0x212121, 1);
+renderer.shadowMapEnabled = true;
 
 // render loop
 const onAnimationFrameHandler = (timeStamp) => {

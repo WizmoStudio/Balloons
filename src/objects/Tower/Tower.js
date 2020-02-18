@@ -10,10 +10,12 @@ export default class Tower extends Group {
         this.name = 'tower';
 
         var geometry = new CylinderGeometry(0.4, 0.4, 200, 32);
-        var material = new MeshPhongMaterial( {color: 0xffff00} );
+        var material = new MeshPhongMaterial( {color: 0xFFFFFF} );
         var cylinder = new Mesh(geometry, material);
 
         this.add(cylinder);
+
+        this.receiveShadow = true
 
         // Init obstacles
 

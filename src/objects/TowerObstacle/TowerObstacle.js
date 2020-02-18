@@ -31,8 +31,16 @@ export default class TowerObstacle extends Group {
             size_dw = [2, 0.8]
         }
 
+        var colors = [
+            0x29DDB0,
+            0xFE5A60,
+            0xC284FC,
+            0xFFC112
+        ]
+
         var geometry = new BoxGeometry(size_dw[0], 0.1, size_dw[1]);
-        var material = new MeshPhongMaterial( {color: 0xffff00} );
+        var material = new MeshPhongMaterial( {color: colors[Math.floor(Math.random() * colors.length)]
+} );
         var cylinder = new Mesh(geometry, material);
 
         this.add(cylinder);

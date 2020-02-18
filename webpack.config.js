@@ -36,6 +36,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({'title': 'three-seed project'})
+    new HtmlWebpackPlugin({
+      'title': 'Balloons',
+      'meta': {
+        'viewport': 'width=device-width, user-scalable=no'
+      }
+    })
   ]
 }

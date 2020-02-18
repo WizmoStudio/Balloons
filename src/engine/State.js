@@ -10,11 +10,13 @@ export default class State {
           balloon_x: 0,
           balloon_z: 0,
           speed: 1,
-          turbo: false
+          turbo: false,
+          sequence: 0
       }
 
       setInterval(() => {
         this.current.speed += 0.2
+        this.sequence += 1
       }, 10000)
       
     }
