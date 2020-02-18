@@ -44,6 +44,7 @@ export default class Controls {
     document.addEventListener("touchend", (e) => {
       console.log(e)
       if(e.changedTouches[0].clientY < (viewport.h*0.8)){
+        console.log('no turbo')
         this.disableTurbo()
       }
     })
