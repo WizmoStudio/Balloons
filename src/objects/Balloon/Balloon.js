@@ -12,7 +12,7 @@ export default class Balloon extends Group {
 
         var geometry = new SphereGeometry(0.3, 12, 12);
         // var geometry = new BoxGeometry(0.5, 0.5, 0.5);
-        var material = new MeshPhongMaterial( {color: 0xFE5A60} );
+        var material = new MeshPhongMaterial( {color: 0xcc3e44} ); // 212121
         var balloon = new Mesh(geometry, material);
 
         this.add(balloon);
@@ -26,7 +26,7 @@ export default class Balloon extends Group {
         
         // Y positions
 
-        this.position.y = (this.state.current.y*-1)
+        this.position.y = this.state.current.y*-1
 
         // X Y position
 

@@ -25,7 +25,7 @@ export default class UI {
 
         this.ctx.font = "30px Arial";
         this.ctx.fillStyle = "#FFF";
-        this.ctx.fillText(this.state.current.score, innerWidth-100, 50);
+        this.ctx.fillText(this.state.current.score.toFixed(0), innerWidth-100, 50);
 
         this.ctx.font = "16px Arial";
         this.ctx.fillStyle = "#FFF";
