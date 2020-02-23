@@ -22,35 +22,41 @@ export default class Balloon extends Group {
 
     update(timeStamp) {
 
-        var variation = Math.sin(timeStamp/1000)/8;
-        
-        // Y positions
+        if(this.state.status == 'gameover'){
 
-        this.position.y = this.state.current.y*-1
+            this.visible = false
+            
+        }else{
+            
+            this.visible = true
+            var variation = Math.sin(timeStamp/1000)/8
+            
+            // Y positions
+            this.position.y = this.state.current.y*-1
+    
+            // X Y position
+            var xz = [0,0]
+            if(this.state.current.face == 0)
+                xz = [0, -1]
+            if(this.state.current.face == 1)
+                xz = [-1, 0]
+            if(this.state.current.face == 2)
+                xz = [0, 1]
+            if(this.state.current.face == 3)
+                xz = [1, 0]
+    
+            var diff_balloon_x = xz[0]-this.state.current.balloon_x
+            var diff_balloon_z = xz[1]-this.state.current.balloon_z
+    
+            this.state.current.balloon_x = this.state.current.balloon_x+diff_balloon_x*0.1
+            this.state.current.balloon_z = this.state.current.balloon_z+diff_balloon_z*0.1
+    
+            this.position.x = this.state.current.balloon_x+variation
+            this.position.z = this.state.current.balloon_z+variation
+    
+            // this.rotation.x = timeStamp / 10000;
 
-        // X Y position
+        }
 
-        // console.log(this.state.current.face)
-
-        var xz = [0,0]
-        if(this.state.current.face == 0)
-            xz = [0, -1]
-        if(this.state.current.face == 1)
-            xz = [-1, 0]
-        if(this.state.current.face == 2)
-            xz = [0, 1]
-        if(this.state.current.face == 3)
-            xz = [1, 0]
-
-        var diff_balloon_x = xz[0]-this.state.current.balloon_x
-        var diff_balloon_z = xz[1]-this.state.current.balloon_z
-
-        this.state.current.balloon_x = this.state.current.balloon_x+diff_balloon_x*0.1
-        this.state.current.balloon_z = this.state.current.balloon_z+diff_balloon_z*0.1
-
-        this.position.x = this.state.current.balloon_x+variation
-        this.position.z = this.state.current.balloon_z+variation
-
-        // this.rotation.x = timeStamp / 10000;
     }
 }

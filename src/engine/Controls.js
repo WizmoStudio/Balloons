@@ -30,56 +30,77 @@ export default class Controls {
     // })
 
     document.addEventListener("touchstart", (e) => {
-      if(e.touches[0].clientY > (viewport.h*0.8)){
-        this.enableTurbo()
-      }else{
-        if(e.touches[0].clientX > (viewport.w*0.5)){
-          this.doRotate(1)
+      if(this.state.status == 'menu'){
+        this.start()
+      }
+      if(this.state.status == 'gameover'){
+        this.restart()
+      }
+      if(this.state.status == 'playing'){
+        if(e.touches[0].clientY > (viewport.h*0.8)){
+          this.enableTurbo()
         }else{
-          this.doRotate(-1)
+          if(e.touches[0].clientX > (viewport.w*0.5)){
+            this.doRotate(1)
+          }else{
+            this.doRotate(-1)
+          }
         }
       }
     })
 
     document.addEventListener("touchend", (e) => {
-      console.log('no turbo')
-      if(e.changedTouches[0].clientY > (viewport.h*0.8)){
-        console.log('no turbo 2')
-        this.disableTurbo()
+      if(this.state.status == 'playing'){
+        if(e.changedTouches[0].clientY > (viewport.h*0.8)){
+          this.disableTurbo()
+        }
       }
     })
-    
-
-
 
     document.onkeyup = (e) => {
-      e = e || window.event;
-      if(e.keyCode == '38'){
-        this.disableTurbo()
+      if(this.state.status == 'playing'){
+        if(e.keyCode == '38'){
+          this.disableTurbo()
+        }
       }
     }
 
     document.onkeydown = (e) => {
-      e = e || window.event;
-      if(e.keyCode == '38'){
-        this.enableTurbo()
+      if(this.state.status == 'menu'){
+        this.start()
       }
-      if(e.keyCode == '37'){
-        this.doRotate(-1)
+      if(this.state.status == 'gameover'){
+        this.restart()
       }
-      if(e.keyCode == '39'){
-        this.doRotate(1)
+      if(this.state.status == 'playing'){
+        e = e || window.event;
+        if(e.keyCode == '38'){
+          this.enableTurbo()
+        }
+        if(e.keyCode == '37'){
+          this.doRotate(-1)
+        }
+        if(e.keyCode == '39'){
+          this.doRotate(1)
+        }
       }
     }
   }
   
   enableTurbo(){
-    console.log('turbo on')
     this.state.current.turbo = true
+  }
+
+  start(){
+    this.state.status = 'playing'
+  }
+
+  restart(){
+    this.state.status = 'playing'
+    this.state.todo = 'restart'
   }
   
   disableTurbo(){
-    console.log('turbo off')
     this.state.current.turbo = false
   }
   

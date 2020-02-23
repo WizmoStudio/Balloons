@@ -48,11 +48,15 @@ renderer.setClearColor(0x212121, 0);
 renderer.shadowMapEnabled = true;
 
 // render loop
+var lastTimeStamp = 0;
 const onAnimationFrameHandler = (timeStamp) => {
   stats.begin();
   
+  var frameTimeStamp = lastTimeStamp == 0 ? timeStamp : timeStamp - lastTimeStamp
+  lastTimeStamp = timeStamp
+
   renderer.render(scene, camera);
-  seedScene.update && seedScene.update(timeStamp);
+  seedScene.update && seedScene.update(frameTimeStamp);
   window.requestAnimationFrame(onAnimationFrameHandler);
   
   stats.end();

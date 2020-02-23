@@ -12,22 +12,22 @@ export default class TowerObstacle extends Group {
         var size_dw = [0.8, 2]
         
         if(config.position == 0){
-            position_xz[1] = 1
+            position_xz = [0, 1]
             size_dw = [0.8, 2]
         }
 
         if(config.position == 1){
-            position_xz[1] = -1
+            position_xz = [0, -1]
             size_dw = [0.8, 2]
         }
 
         if(config.position == 2){
-            position_xz[0] = -1
+            position_xz = [-1, 0]
             size_dw = [2, 0.8]
         }
 
         if(config.position == 3){
-            position_xz[0] = 1
+            position_xz = [1, 0]
             size_dw = [2, 0.8]
         }
 

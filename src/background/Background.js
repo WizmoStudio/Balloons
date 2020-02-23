@@ -41,6 +41,11 @@ export default class Background {
         this.ctx.globalAlpha = 1
         this.ctx.fillRect(0,0,innerWidth,this.background.y)
 
+        if(this.state.current.y > -25){
+            // this.background.y = -10
+            this.background.new = '#C284FC'
+        }
+
         if(this.state.current.y < -25 && this.state.current.y > -26){
             this.background.y = -10
             this.background.new = '#29DDB0'
