@@ -11,6 +11,8 @@ import Collision from '../engine/Collision.js';
 import UI from '../ui/UI.js';
 import Background from '../background/Background.js';
 
+var store = require('store')
+
 export default class SeedScene extends Group {
   constructor() {
     super();
@@ -42,6 +44,13 @@ export default class SeedScene extends Group {
   }
 
   update(timeStamp) {
+
+    if(this.state.status == 'gameover'){
+      var score = this.state.current.score.toFixed(0)
+      if(parseInt(score) > parseInt(store.get('highscore'))){
+        store.set('highscore', score)
+      }
+    }
 
     if(
       this.state.status == 'playing' ||
@@ -81,8 +90,8 @@ export default class SeedScene extends Group {
       if(this.state.status == 'playing'){
 
         // Speed & up part
-        var max_step_speed = 250
-        var max_speed = 3
+        var max_step_speed = 300
+        var max_speed = 4
         var turbo_speed = 3
     
         var speed_diff = 1-((max_step_speed+this.position.y)/max_step_speed)

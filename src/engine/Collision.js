@@ -11,8 +11,8 @@ export default class Collision {
        
         if(this.state.status == 'playing'){
 
-            var offset_top = 0.1
-            var offset_bottom = 0.1
+            var offset_top = 0.3
+            var offset_bottom = 0.3
             var y = this.state.current.y
 
             for(var i in this.state.obstacles){

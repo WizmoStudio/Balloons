@@ -11,6 +11,12 @@ export default class State {
     }
     
     initCurrent() {
+
+      var tmp = {}
+      if(this.current !== undefined){
+        tmp.face_turns = this.current.face_turns
+      }
+
       this.current = {
         score: 0,
         face: 0,
@@ -23,6 +29,9 @@ export default class State {
         turbo: false,
         sequence: 0
       }
+
+      if(tmp.face_turns !== undefined)
+        this.current.face_turns = tmp.face_turns
     }
 
     update(){
