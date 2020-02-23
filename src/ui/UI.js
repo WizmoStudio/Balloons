@@ -30,7 +30,7 @@ export default class UI {
             this.ctx.textAlign = "right";
             this.ctx.font = "32px Arial";
             this.ctx.fillStyle = "#000";
-            this.ctx.fillText('Top: '+store.get('highscore'), innerWidth-10, 50);
+            this.ctx.fillText('Top : '+store.get('highscore'), innerWidth-10, 50);
         }
 
         if(this.state.status == 'playing'){
@@ -54,10 +54,10 @@ export default class UI {
 
         if(this.state.status == 'menu'){
 
-            this.ctx.textAlign = "center";
-            this.ctx.font = "32px Arial";
-            this.ctx.fillStyle = "#000";
-            this.ctx.fillText("Touch to start !", innerWidth/2, innerHeight/2);
+            // this.ctx.textAlign = "center";
+            // this.ctx.font = "32px Arial";
+            // this.ctx.fillStyle = "#000";
+            // this.ctx.fillText("Touch to start !", innerWidth/2, innerHeight/2);
 
             this.ctx.textAlign = "center";
             this.ctx.font = "24px Arial";
