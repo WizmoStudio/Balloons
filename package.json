@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "stats.js": "^0.17.0",
     "store": "^2.0.12",
     "three": "^0.104.0",
